@@ -5,7 +5,9 @@ if [ -f gpp ]; then
 	echo "Moving copying gpp to $INSTALL_DIR."
 	sudo cp -f gpp "$INSTALL_DIR"
 else
+	echo "Downloading gpp from github using curl."
 	curl -o gpp https://raw.github.com/DrPheltRight/gpp/master/gpp
+	echo "Moving gpp into $INSTALL_DIR."
 	sudo mv -f gpp "$INSTALL_DIR"
 fi
 
