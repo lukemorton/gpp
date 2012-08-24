@@ -1,0 +1,100 @@
+#!/bin/bash
+
+start()
+{
+	CURRENT_MESSAGE="$1..."
+	echo -en "$CURRENT_MESSAGE \033[0;31m\r"
+}
+
+end()
+{
+	if [ "$?" -gt "0" ]; then
+		echo "$CURRENT_MESSAGE failed."
+		exit 1
+	fi
+
+	tput sgr0
+	echo "$CURRENT_MESSAGE done."
+}
+
+end_custom()
+{
+	tput sgr0
+	echo "$CURRENT_MESSAGE $1."
+}
+
+git_stash()
+{
+	start "Stashing"
+
+	git stash save > /dev/null
+
+	end
+}
+
+git_stash_pop()
+{
+	start "Unstashing"
+
+	git stash pop > /dev/null
+
+	end
+}
+
+git_pull()
+{
+	start "Pulling changes"
+
+	git pull --no-edit 2>&1 | grep -q -v "Already up-to-date."
+
+	if [ "$?" -gt "0" ]; then
+		end_custom "none"
+		return 0
+	fi
+
+	end
+}
+
+git_push()
+{
+	start "Pushing changes"
+
+	git push 2>&1 | grep -q -v "Everything up-to-date"
+
+	if [ "$?" -gt "0" ]; then
+		end_custom "none"
+		return 0
+	fi
+
+	end
+}
+
+unit_test()
+{
+	start "Running unit tests"
+
+	phpunit > /dev/null
+
+	end
+}
+
+main()
+{
+	local has_stash=`git status -s`
+
+	if [ -n "$has_stash" ]; then
+		git_stash
+	fi
+
+	git_pull
+
+	unit_test
+
+	git_push
+
+	if [ -n "$has_stash" ]; then
+		git_stash_pop
+	fi
+}
+
+main
