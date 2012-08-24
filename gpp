@@ -92,7 +92,7 @@ git_push()
 
 main()
 {
-	HAS_STASH=`git status -s`
+	HAS_STASH=`git status -uno -s`
 
 	if [ -n "$HAS_STASH" ]; then
 		git_stash
