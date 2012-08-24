@@ -10,6 +10,11 @@ end()
 {
 	if [ "$?" -gt "0" ]; then
 		echo "$CURRENT_MESSAGE failed."
+
+		if [ -n `git status -s` ]; then
+			git_stash_pop
+		fi
+		
 		exit 1
 	fi
 
