@@ -11,7 +11,7 @@ end()
 	if [ "$?" -gt "0" ]; then
 		echo "$CURRENT_MESSAGE failed."
 
-		if [ -n `git status -s` ]; then
+		if [ -n "$HAS_STASH" ]; then
 			git_stash_pop
 		fi
 		
@@ -92,9 +92,9 @@ git_push()
 
 main()
 {
-	local has_stash=`git status -s`
+	HAS_STASH=`git status -s`
 
-	if [ -n "$has_stash" ]; then
+	if [ -n "$HAS_STASH" ]; then
 		git_stash
 	fi
 
@@ -104,7 +104,7 @@ main()
 
 	git_push
 
-	if [ -n "$has_stash" ]; then
+	if [ -n "$HAS_STASH" ]; then
 		git_stash_pop
 	fi
 }
