@@ -69,15 +69,6 @@ git_push()
 	end
 }
 
-unit_test()
-{
-	start "Running unit tests"
-
-	phpunit > /dev/null
-
-	end
-}
-
 main()
 {
 	local has_stash=`git status -s`
@@ -87,8 +78,6 @@ main()
 	fi
 
 	git_pull
-
-	unit_test
 
 	git_push
 
