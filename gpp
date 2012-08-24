@@ -63,7 +63,7 @@ git_pull()
 git_before_push()
 {
 	if [ -f .gpp ]; then
-		echo "Found .gpp file, running additional binaries before push."
+		echo "Found .gpp file, executing additional binaries before push."
 
 		while read line
 		do
