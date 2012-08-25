@@ -3,6 +3,7 @@
 # gpp: git pull and push sugar
 #
 # written by Luke Morton, 2012
+# licensed under MIT
 # https://github.com/DrPheltRight/gpp
 
 start()
