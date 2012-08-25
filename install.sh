@@ -4,7 +4,7 @@ fi
 
 if [ -f gpp ]; then
 	echo "File found in local directory, using that."
-	echo "Moving copying gpp to $INSTALL_DIR."
+	echo "Copying gpp to $INSTALL_DIR."
 	sudo cp -f gpp "$INSTALL_DIR"
 else
 	echo "Downloading gpp from github using curl."
