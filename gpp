@@ -98,6 +98,11 @@ git_push()
 
 gpp()
 {
+	if [ ! -f .git ]; then
+		echo "You must run gpp in the root directory of a git repository."
+		exit 1
+	fi
+
 	HAS_STASH=`git status -uno -s`
 
 	if [ -n "$HAS_STASH" ]; then
