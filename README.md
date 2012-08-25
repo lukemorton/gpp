@@ -24,7 +24,7 @@ have been stashed.
 ## What do you mean by "anything you want"?
 
 If a file called `.gpp` exists in your repository then run
-`gpp` in that directory then every line will be executed like
+`gpp` in that directory and every line will be executed like
 an extra command.
 
 This is awesome for unit testing merges after a pull before
