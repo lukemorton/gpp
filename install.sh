@@ -1,4 +1,6 @@
-INSTALL_DIR=/usr/local/bin
+if [ -z "$INSTALL_DIR" ]; then
+	INSTALL_DIR=/usr/local/bin
+fi
 
 if [ -f gpp ]; then
 	echo "File found in local directory, using that."
