@@ -32,7 +32,7 @@ pushing back up and annoying your colleagues.
 
 ## Installing
 
-Just run:
+Just run (on *nix including OS X):
 
 ```sh
 curl -s https://raw.github.com/DrPheltRight/gpp/master/install.sh | sh
