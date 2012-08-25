@@ -1,4 +1,4 @@
-# Super git pull and push
+# gpp: git pull and push sugar
 
 So what does it do?
 
