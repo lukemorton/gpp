@@ -1,6 +1,15 @@
 # gpp: git pull and push sugar
 
-So what does it do?
+A simple command for syncing your git repository with a
+remote while stashing changes.
+
+Once [installed](#installing) all you have to do is:
+
+``` sh
+gpp
+```
+
+## What does it do?
 
  - `git stash` *if unstaged changes are detected*
  - `git pull`
