@@ -8,19 +8,20 @@ So what does it do?
  - `git push`
  - `git stash pop` *if something was stashed*
 
-If any command executed fails, gpp will stop itself and
-unstage any changes that may have been hidden.
+If any command executed returns an error status greater than
+`0` `gpp` will stop itself and unstash any changes that may
+have been stashed.
 
 ## What do you mean by "anything you want"?
 
-Basically if you create a file called `.gpp` in your
-repository then run `gpp` in that directory then every line
-will be executed like an extra command.
+If a file called `.gpp` exists in your repository then run
+`gpp` in that directory then every line will be executed like
+an extra command.
 
-This is awesome for unit testing merges (after a pull) before
+This is awesome for unit testing merges after a pull before
 pushing back up and annoying your colleagues.
 
-## Get me some of that
+## Installing
 
 Just run:
 
@@ -28,7 +29,7 @@ Just run:
 curl -s https://raw.github.com/DrPheltRight/gpp/master/install.sh | sh
 ```
 
-It will install `gpp` in `/usr/local/bin` so as long as that's
+It will install `gpp` in `/usr/local/bin`. As long as that's
 in your `$PATH` you should be able to run it immediately.
 
 Since the install script puts the binary in `/usr/local/bin`
