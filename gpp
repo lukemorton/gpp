@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# gpp: git pull and push sugar
+#
+# written by Luke Morton, 2012
+# https://github.com/DrPheltRight/gpp
 
 start()
 {
@@ -90,7 +95,7 @@ git_push()
 	end
 }
 
-main()
+gpp()
 {
 	HAS_STASH=`git status -uno -s`
 
@@ -109,4 +114,4 @@ main()
 	fi
 }
 
-main
+gpp
