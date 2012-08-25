@@ -1,3 +1,9 @@
+# gpp install script
+#
+# written by Luke Morton, 2012
+# licensed under MIT
+# https://github.com/DrPheltRight/gpp
+
 if [ -z "$INSTALL_DIR" ]; then
 	INSTALL_DIR=/usr/local/bin
 fi
