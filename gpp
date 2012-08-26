@@ -6,6 +6,14 @@
 # licensed under MIT
 # https://github.com/DrPheltRight/gpp
 
+if [ -z "$OUT" ]; then
+	if [ -n "$DEBUG" ]; then
+		OUT=/dev/stdout
+	else
+		OUT=/dev/null
+	fi
+fi
+
 start()
 {
 	CURRENT_MESSAGE="$1..."
@@ -38,7 +46,7 @@ git_stash()
 {
 	start "Stashing"
 
-	git stash save > /dev/null
+	git stash save > "$OUT"
 
 	end
 }
@@ -47,7 +55,7 @@ git_stash_pop()
 {
 	start "Unstashing"
 
-	git stash pop > /dev/null
+	git stash pop > "$OUT"
 
 	end
 }
@@ -56,9 +64,17 @@ git_pull()
 {
 	start "Pulling changes"
 
-	git pull --no-edit 2>&1 | grep -q -v "Already up-to-date."
+	local pull=`git pull --no-edit 2>&1`
 
-	if [ "$?" -gt "0" ]; then
+	echo "$pull" | grep -q -v "Already up-to-date."
+
+	local up_to_date="$?"
+
+	if [ -n "$DEBUG" ]; then
+		echo "$pull"
+	fi
+
+	if [ "$up_to_date" -gt "0" ]; then
 		end_custom "none"
 		return 0
 	fi
@@ -75,7 +91,7 @@ git_before_push()
 		do
 			start "Executing $line"
 
-			$line > /dev/null
+			$line > "$OUT"
 			
 			end
 		done < .gpp
@@ -86,9 +102,17 @@ git_push()
 {
 	start "Pushing changes"
 
-	git push 2>&1 | grep -q -v "Everything up-to-date"
+	local push=`git push 2>&1`
 
-	if [ "$?" -gt "0" ]; then
+	echo "$push" | grep -q -v "Everything up-to-date"
+
+	local up_to_date="$?"
+
+	if [ -n "$DEBUG" ]; then
+		echo "$push"
+	fi
+
+	if [ "$up_to_date" -gt "0" ]; then
 		end_custom "none"
 		return 0
 	fi
@@ -104,6 +128,10 @@ gpp()
 	fi
 
 	HAS_STASH=`git status -uno -s`
+
+	if [ -n "$DEBUG" ]; then
+		echo "$HAS_STASH"
+	fi
 
 	if [ -n "$HAS_STASH" ]; then
 		git_stash
