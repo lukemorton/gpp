@@ -112,6 +112,8 @@ git_push()
 
 	echo "$push" | grep -q -v "Everything up-to-date"
 
+	# If greater than 0 everything is up to date (not quite
+	# postfix is it o_0)
 	local up_to_date="$?"
 
 	if [ -n "$DEBUG" ]; then
