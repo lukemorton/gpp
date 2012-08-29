@@ -142,6 +142,15 @@ gpp()
 	fi
 
 	if [ -n "$HAS_STASH" ]; then
+		echo $HAS_STASH | grep -q -v "\U\U"
+		
+		local unmerged="$?"
+
+		if [ "$unmerged" -gt "0" ]; then
+			echo "Unmerged changes... sort it out."
+			exit 1
+		fi
+
 		git_stash
 	fi
 
