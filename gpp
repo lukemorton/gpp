@@ -22,7 +22,13 @@ start()
 
 end()
 {
+	if [ -n "$FAILED" ]; then
+		exit 1
+	fi
+
 	if [ "$?" -gt "0" ]; then
+		FAILED=1
+
 		echo "$CURRENT_MESSAGE failed."
 
 		if [ -n "$HAS_STASH" ]; then
