@@ -47,6 +47,13 @@ for your password. Check the script for yourself, it's safe
 enough. If you have any suggestions for improvements send a
 pull request.
 
+## Expected future features
+
+ - Store stash state in a file in .git/ so that we can tell
+   between runs if we stashed something and if we unstashed.
+   This would allow use to clean up unfinished gpp runs on a
+   second run.
+
 ## Author
 
 Luke Morton
