@@ -6,6 +6,8 @@
 # licensed under MIT
 # https://github.com/DrPheltRight/gpp
 
+GIT_MERGE_AUTOEDIT=no
+
 if [ -z "$OUT" ]; then
 	if [ -n "$DEBUG" ]; then
 		OUT=/dev/stdout
